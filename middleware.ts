@@ -4,18 +4,24 @@ import { NextResponse } from 'next/server';
 // This function can be marked `async` if using `await` inside
 export function middleware(request: NextRequest) {
 	const token = request.cookies.get('token');
-	if (!token) {
-		const refresh = request.cookies.get('refresh_token');
-		if (refresh) {
-			// refresh token
-			// ...
-			// set new token
-			request.cookies.set('token', 'new token');
-			return NextResponse.next();
-		} else {
-			return NextResponse.redirect('/login');
+	if (!request.nextUrl.pathname.startsWith('/login')) {
+		if (!token) {
+			const refresh = request.cookies.get('refresh_token');
+			if (refresh) {
+				request.cookies.set('token', 'new token');
+				return NextResponse.next();
+			} else {
+				console.log('no token');
+				return NextResponse.redirect(new URL('/login', request.url));
+			}
+		}
+	} else {
+		if (token) {
+			return NextResponse.redirect(new URL('/', request.url));
 		}
 	}
+
+	return NextResponse.next();
 }
 
 // See "Matching Paths" below to learn more
