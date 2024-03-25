@@ -10,7 +10,7 @@ export default function Layout({ children }: LayoutProps) {
 	return (
 		<>
 			<Header />
-			<main className="flex min-h-svh xl:max-w-[1380px] mx-auto justify-center">
+			<main className="flex min-h-[calc(100dvh-44px)] xl:max-w-[1380px] mx-auto justify-center">
 				{children}
 			</main>
 			<Footer />

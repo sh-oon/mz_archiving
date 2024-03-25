@@ -1,9 +1,11 @@
 import { MongoClient } from 'mongodb'
 
-const url =
-	`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.dggv7bb.mongodb.net/?retryWrites=true&w=majority`
+const url = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@atlascluster.fyv3rcb.mongodb.net/?retryWrites=true&w=majority&appName=AtlasCluster`
+console.log(process.env.DB_USER);
+console.log(process.env.DB_PASS);
 const options: any = { useNewUrlParser: true }
 let connectDB: Promise<MongoClient>
+
 
 if (process.env.NODE_ENV === 'development') {
 	// 개발 중 재실행을 막음

@@ -21,8 +21,8 @@ const Header = () => {
 		},
 		{
 			id: 3,
-			name: 'Post',
-			link: '/articles/write-post',
+			name: 'Posts',
+			link: '/posts',
 		},
 	];
 
